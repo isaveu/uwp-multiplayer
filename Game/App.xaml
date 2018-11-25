@@ -1,0 +1,34 @@
+﻿<Application
+    x:Class="Game.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Game"
+    RequestedTheme="Dark">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="UserMessage">
+                <Grid x:Name="GridDialog" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#191919" RenderTransformOrigin="0.5, 0.5" BorderThickness="1" BorderBrush="#FF5856D6" MinWidth="400" MinHeight="170">
+                    <TextBlock x:Name="TextBlockDialogText" Text="Connecting to server..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Light" TextLineBounds="Tight" OpticalMarginAlignment="TrimSideBearings" />
+                    <Grid.RenderTransform>
+                        <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+                    </Grid.RenderTransform>
+                    <Grid.Triggers>
+                        <EventTrigger RoutedEvent="Grid.Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2" From="0.85" To="1.0" Storyboard.TargetName="GridDialog" Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleX)" />
+                                        <DoubleAnimation Duration="0:0:0.2" From="0.85" To="1.0" Storyboard.TargetName="GridDialog" Storyboard.TargetProperty="(Grid.RenderTransform).(ScaleTransform.ScaleY)" />
+                                        <DoubleAnimation Duration="0:0:0.2" From="0" To="1.0" Storyboard.TargetName="GridDialog" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Grid.Triggers>
+                </Grid>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

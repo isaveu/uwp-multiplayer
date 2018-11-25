@@ -1,0 +1,157 @@
+﻿<Page
+    x:Class="Game.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Game"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" RequestedTheme="Dark" Background="#FF131313">
+
+    <Page.Resources>
+        <Storyboard x:Key="StoryboardMatchmakingOpacity0">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="0" Duration="0:0:0.5"
+                         Storyboard.TargetName="GridMatchmaking" />
+        </Storyboard>
+
+        <Storyboard x:Key="StoryboardMatchmakingOpacity1">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="1" Duration="0:0:0.5"
+                         Storyboard.TargetName="GridMatchmaking" />
+        </Storyboard>
+
+        <Storyboard x:Key="StoryboardMatchOpacity0">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="0" Duration="0:0:0.5"
+                         Storyboard.TargetName="GridMatch" />
+        </Storyboard>
+
+        <Storyboard x:Key="StoryboardMatchOpacity1">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="1" Duration="0:0:0.5"
+                         Storyboard.TargetName="GridMatch" />
+        </Storyboard>
+
+        <Storyboard x:Key="StoryboardLoadingOpacity0">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="0" Duration="0:0:0.5"
+                         Storyboard.TargetName="GridLoading" />
+        </Storyboard>
+        <Storyboard x:Key="StoryboardLoadingOpacity1">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="1" Duration="0:0:0.5"
+                         Storyboard.TargetName="GridLoading" />
+        </Storyboard>
+        <Storyboard x:Key="StoryboardMapOpacity1">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="1" Duration="0:0:0.5"
+                         Storyboard.TargetName="ViewboxMap" />
+        </Storyboard>
+        <Storyboard x:Key="StoryboardMapOpacity0">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                         To="0" Duration="0:0:0.5"
+                         Storyboard.TargetName="ViewboxMap" />
+        </Storyboard>
+
+        <Style x:Key="ListViewPlayerListStyle" TargetType="ListView">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="TabNavigation" Value="Once"/>
+            <Setter Property="IsSwipeEnabled" Value="True"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled"/>
+            <Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
+            <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="True"/>
+            <Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
+            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="ItemContainerTransitions">
+                <Setter.Value>
+                    <TransitionCollection>
+                    </TransitionCollection>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ScrollViewer x:Name="ScrollViewer" AutomationProperties.AccessibilityView="Raw" BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}" IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" TabNavigation="{TemplateBinding TabNavigation}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}">
+                                <ItemsPresenter FooterTransitions="{TemplateBinding FooterTransitions}" FooterTemplate="{TemplateBinding FooterTemplate}" Footer="{TemplateBinding Footer}" HeaderTemplate="{TemplateBinding HeaderTemplate}" Header="{TemplateBinding Header}" HeaderTransitions="{TemplateBinding HeaderTransitions}" Padding="{TemplateBinding Padding}"/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="GridMain">
+        <TextBlock x:Name="TextBlockPaused" Foreground="#FF242424" Text="PRESS ANY KEY TO START" FontWeight="Light" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" TextLineBounds="Tight" />
+        <Grid x:Name="GridMatchmaking" Margin="40" Opacity="0">
+            <TextBlock Text="MATCHMAKING" FontSize="46" FontWeight="Light" HorizontalAlignment="Left" VerticalAlignment="Top" TextLineBounds="Tight" OpticalMarginAlignment="TrimSideBearings" />
+
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Vertical">
+                <TextBlock x:Name="TextBlockLine1" FontSize="20" FontWeight="Light" />
+                <TextBlock x:Name="TextBlockLine2" FontSize="20" FontWeight="Light" />
+                <TextBlock x:Name="TextBlockLine3" FontSize="20" FontWeight="Light" />
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="GridMatch" Opacity="0" HorizontalAlignment="Stretch" Margin="40" MaxWidth="1920">
+            <StackPanel Height="540" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderBrush="#FF5856D6" BorderThickness="1">
+                <Grid Background="#FF5856D6">
+                    <TextBlock Text="PLAYER LIST" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12,7,12,9" />
+                </Grid>
+                <ListView x:Name="ListViewPlayers" Background="#FF191919" HorizontalAlignment="Stretch" Height="500" ContainerContentChanging="ListViewPlayerListContainerContentChanged" Style="{StaticResource ListViewPlayerListStyle}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6">
+                <TextBlock x:Name="TextBlockPlayersCount" FontSize="20" FontWeight="Light" Text="1/16 Players" />
+                <TextBlock FontSize="20" FontWeight="Light" Text="-" Margin="6,0" />
+                <TextBlock x:Name="TextBlockMatchStatus" FontSize="20" FontWeight="Light" Text="Waiting for players" />
+            </StackPanel>
+        </Grid>
+
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid x:Name="GridLoading" Opacity="0">
+                <StackPanel HorizontalAlignment="Stretch" Margin="40,0,40,40" VerticalAlignment="Bottom" MaxWidth="1000">
+                    <Grid Padding="0,0,12,0" Background="#FF191919">
+                        <TextBlock x:Name="TextBlockLoading" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="14,10,14,8"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Stretch" Background="#FF505050">
+                        <Grid x:Name="GridProgessBar" Height="2" HorizontalAlignment="Left" Background="#FFBF0077" BorderThickness="0" Width="0" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <Viewbox x:Name="ViewboxMap" VerticalAlignment="Center" HorizontalAlignment="Center" Opacity="0">
+                <Grid x:Name="GridMap" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="1280" Height="720">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,0,0" Background="#FF191919" BorderThickness="1" BorderBrush="#FF5856D6">
+                        <Grid HorizontalAlignment="Left" Padding="12" BorderThickness="0,0,1,0" BorderBrush="#FF5856D6">
+                            <TextBlock x:Name="TextBlockLocalScore" Text="0" FontFamily="Courier New" FontSize="36" Foreground="#FF007AFF" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextLineBounds="Tight" OpticalMarginAlignment="TrimSideBearings" Margin="0" Padding="0" />
+                        </Grid>
+                        <StackPanel Padding="4,8" BorderThickness="8,0" Orientation="Horizontal">
+                            <TextBlock x:Name="TextBlockMinutesLeft" Text="00" FontFamily="Courier New" FontSize="36" VerticalAlignment="Center" Margin="0,0,4,0" TextLineBounds="Tight" />
+                            <TextBlock x:Name="TextBlockSecondsLeft" Text="30" FontFamily="Courier New" FontSize="36" VerticalAlignment="Center" TextLineBounds="Tight" />
+                        </StackPanel>
+                        <Grid HorizontalAlignment="Left" Padding="12" BorderThickness="1,0,0,0" BorderBrush="#FF5856D6">
+                            <TextBlock x:Name="TextBlockRemoteScore" Text="0" FontFamily="Courier New" FontSize="36" Foreground="#FFFF3B30" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextLineBounds="Tight" OpticalMarginAlignment="TrimSideBearings" Margin="0" Padding="0" />
+                        </Grid>
+                    </StackPanel>
+                    <TextBlock x:Name="TextBlockCountdown" Text="3" FontFamily="Courier New" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" RenderTransformOrigin="0.5, 0.5" TextLineBounds="Tight">
+                        <TextBlock.RenderTransform>
+                            <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                </Grid>
+            </Viewbox>
+        </Grid>
+    </Grid>
+</Page>
